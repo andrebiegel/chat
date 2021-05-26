@@ -1,4 +1,4 @@
-package de.abiegel.fops.undertowwebsockets;
+package de.abiegel.fops.chat.boundary;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,15 +16,16 @@ import org.jboss.logging.Logger;
 
 @ServerEndpoint("/chat/{username}")
 @ApplicationScoped
-public class SupersonicChatSocket {
+public class ChatSocket {
 
-    private static final Logger LOG = Logger.getLogger(SupersonicChatSocket.class);
+    private static final Logger LOG = Logger.getLogger(ChatSocket.class);
 
     Map<String, Session> sessions = new ConcurrentHashMap<>();
 
     @OnOpen
     public void onOpen(Session session, @PathParam("username") String username) {
         sessions.put(username, session);
+        broadcast("User " + username + " joined");
     }
 
     @OnClose
