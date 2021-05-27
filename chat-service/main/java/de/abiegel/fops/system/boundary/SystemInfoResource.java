@@ -10,7 +10,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import de.abiegel.fops.system.entity.SystemInfo;
 
-@Path("/system-info")
+@Path("/system")
 public class SystemInfoResource {
 
     @Inject
