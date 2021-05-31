@@ -1,0 +1,16 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./chat-app-react
+      dockerfile: Dockerfile
+    ports:
+      - 80:80        
+  chat-service:
+    build: 
+      context: ./chat-service
+      dockerfile: Dockerfile.jvm-multi 
+    environment: 
+      - QUARKUS_HTTP_CORS=true
+    ports:
+        - 8080:8080      

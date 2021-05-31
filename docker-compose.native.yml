@@ -1,0 +1,6 @@
+version: '3'
+services:
+  chat-service:
+    build: 
+      context: ./chat-service
+      dockerfile: Dockerfile.native-multi    
