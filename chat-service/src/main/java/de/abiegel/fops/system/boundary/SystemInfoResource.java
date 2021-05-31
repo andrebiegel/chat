@@ -15,11 +15,11 @@ public class SystemInfoResource {
 
     @Inject
     @ConfigProperty(name= "quarkus.application.version", defaultValue = "unknown")
-    private String version;
+    String version;
 
     @Inject
     @ConfigProperty(name= "quarkus.application.name", defaultValue = "unknown")
-    private String appName;
+    String appName;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

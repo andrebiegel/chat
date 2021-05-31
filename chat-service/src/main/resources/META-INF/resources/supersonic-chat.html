@@ -80,6 +80,7 @@
               var name = $("#name").val();
               console.log("Val: " + name);
               socket = new WebSocket("ws://" + location.host + "/chat/" + name);
+              cosole.log(socket.url)
               socket.onopen = function() {
                   connected = true;
                   console.log("Connected to the web socket");
