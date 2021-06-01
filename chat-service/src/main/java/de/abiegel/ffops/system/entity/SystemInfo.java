@@ -1,4 +1,4 @@
-package de.abiegel.fops.system.entity;
+package de.abiegel.ffops.system.entity;
 
 
 public class SystemInfo {

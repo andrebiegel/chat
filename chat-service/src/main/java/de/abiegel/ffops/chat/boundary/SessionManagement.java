@@ -1,4 +1,4 @@
-package de.abiegel.fops.chat.boundary;
+package de.abiegel.ffops.chat.boundary;
 
 import java.util.Objects;
 import java.util.Queue;
