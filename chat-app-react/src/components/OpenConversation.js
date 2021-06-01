@@ -24,7 +24,7 @@ export default function OpenConversation({chatroomId}) {
   }
 
   return (
-    <div className="d-flex flex-column flex-grow-1"> <em>{chatroomId}</em>
+    <div className="d-flex flex-column flex-grow-1">
       <div className="flex-grow-1 overflow-auto">
         <div className="d-flex flex-column align-items-start justify-content-end px-3">
           {selectedConversation.messages.map((message, index) => {
