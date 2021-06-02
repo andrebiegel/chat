@@ -1,5 +1,6 @@
 package de.abiegel.ffops.alerting.boundary;
 
+import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,11 +26,11 @@ public class AlertsResource {
     @PostConstruct
     public void init() {
         this.alerts.add(Alert.of(UUID.randomUUID().toString(), "B3", " Street 1 City", "BE aware of special thing",
-                ZonedDateTime.now(), Arrays.asList(new Attendee("test@example.com", " Display Name"))));
+                Instant.now(), Arrays.asList(new Attendee("test@example.com", " Display Name"))));
         this.alerts.add(Alert.of(UUID.randomUUID().toString(), "B2", " Street 1 City", "BE aware of special thing",
-                ZonedDateTime.now(), Arrays.asList(new Attendee("test@example.com", " Display Name"))));
+                Instant.now(), Arrays.asList(new Attendee("test@example.com", " Display Name"))));
         this.alerts.add(Alert.of(UUID.randomUUID().toString(), "TH2", " Street 1 City", "BE aware of special thing",
-                ZonedDateTime.now(), Arrays.asList(new Attendee("test@example.com", " Display Name"))));
+                Instant.now(), Arrays.asList(new Attendee("test@example.com", " Display Name"))));
     }
 
     @GET

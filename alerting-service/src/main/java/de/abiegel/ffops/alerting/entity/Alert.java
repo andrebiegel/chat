@@ -1,5 +1,6 @@
 package de.abiegel.ffops.alerting.entity;
 
+import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -8,12 +9,12 @@ import java.util.UUID;
 public class Alert {
     String address;
     String keyword;
-    ZonedDateTime date;
+    Instant date;
     String message;
     String id;
     List<Attendee> attendees;
 
-    public static Alert of(String uuid, String keyword, String address, String message, ZonedDateTime date,
+    public static Alert of(String uuid, String keyword, String address, String message, Instant date,
             List<Attendee> list) {
         Alert tmp = new Alert();
         tmp.date = date;
@@ -45,11 +46,11 @@ public class Alert {
         this.keyword = keyword;
     }
 
-    public ZonedDateTime getDate() {
+    public Instant getDate() {
         return this.date;
     }
 
-    public void setDate(ZonedDateTime date) {
+    public void setDate(Instant date) {
         this.date = date;
     }
 
@@ -90,7 +91,7 @@ public class Alert {
 
     @Override
     public int hashCode() {
-        return Objects.hash( id);
+        return Objects.hash(id);
     }
 
 }
