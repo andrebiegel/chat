@@ -25,7 +25,9 @@ function AlertsProvider({ children }) {
     });
   }
 
-  const retrieveAlert = ({ id }) => alerts.find((alert) => alert.id === id);
+  const retrieveAlert = (id) => {
+    return alerts.find((alert) => alert.id === id);
+  };
 
   const addAttendeeToAlert = useCallback(
     ({ alertId, id, name }) => {
