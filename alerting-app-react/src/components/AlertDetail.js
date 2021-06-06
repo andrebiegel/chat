@@ -5,13 +5,16 @@ import { useAlerts } from "../contexts/AlertsProvider";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 
-function AlertDetail() {
+function AlertDetail({ user }) {
   const { id } = useParams();
-  const { retrieveAlert } = useAlerts();
+  const { retrieveAlert, addAttendeeToAlert, pushNewAttendee } = useAlerts();
   const alert = retrieveAlert(id);
   dayjs.extend(localizedFormat);
   function handleSubmit(e) {
     e.preventDefault();
+    // add to
+    addAttendeeToAlert(id, user.id, user.name);
+    pushNewAttendee(id, user);
   }
 
   return (

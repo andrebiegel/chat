@@ -7,7 +7,7 @@ export function useAlerts() {
   return useContext(AlertsContext);
 }
 
-function AlertsProvider({ children }) {
+function AlertsProvider({ url, children }) {
   const [alerts, setAlerts] = useSessionStorage("alerts", []);
 
   function createAlert({ id, keyword, message, address, date }) {
@@ -25,12 +25,10 @@ function AlertsProvider({ children }) {
     });
   }
 
-  const retrieveAlert = (id) => {
-    return alerts.find((alert) => alert.id === id);
-  };
+  const retrieveAlert = (id) => alerts.find((alert) => alert.id === id);
 
   const addAttendeeToAlert = useCallback(
-    ({ alertId, id, name }) => {
+    (alertId, id, name) => {
       setAlerts((prevAlerts) => {
         let madeChange = false;
         const newAttendee = { id, name };
@@ -56,13 +54,23 @@ function AlertsProvider({ children }) {
     },
     [setAlerts]
   );
-
+  const pushNewAttendee = (alertId, attendee) => {
+    const pushNewAttendeeUrl = url + `/${alertId}/attendee `;
+    fetch(pushNewAttendeeUrl, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(attendee),
+    });
+  };
   const value = {
     alerts,
     createAlert,
     addAttendeeToAlert,
     retrieveAlert,
     provideAlerts: setAlerts,
+    pushNewAttendee,
   };
 
   return (
