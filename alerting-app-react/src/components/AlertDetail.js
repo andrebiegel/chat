@@ -18,10 +18,7 @@ function AlertDetail({ user }) {
   }
 
   return (
-    <Container
-      className="align-items-center d-flex"
-      style={{ height: "100vh" }}
-    >
+    <Container>
       <Card
         className="mt-2"
         style={{ border: "1px dashed grey", background: "Lavender" }}
@@ -33,6 +30,7 @@ function AlertDetail({ user }) {
           <Card.Title>{alert.address}</Card.Title>
           <Card.Text>{alert.message}</Card.Text>
           <Card.Text>
+            Attendees:
             <ListGroup>
               {alert.attendees.map((attendee) => (
                 <ListGroup.Item key={attendee.id}>
