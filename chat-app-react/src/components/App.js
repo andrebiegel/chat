@@ -3,6 +3,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import "../App.css";
 import OpenConversation from "./OpenConversation";
 import WebSocketProvider from "../contexts/WebSocketProvider";
+import React from "react";
 import {
   ConversationsProvider,
   useConversations,

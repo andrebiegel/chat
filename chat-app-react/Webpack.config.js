@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const InterpolateHtmlPlugin = require("interpolate-html-plugin");
+const { ModuleFederationPlugin } = require("webpack").container;
+const deps = require("./package.json").dependencies;
 module.exports = {
   mode: "development",
   devServer: {
@@ -7,6 +9,17 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.m?js/,
+        type: "javascript/auto",
+        resolve: {
+          fullySpecified: false,
+        },
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
       {
         /* The following line to ask babel 
              to compile any file with extension
@@ -33,9 +46,23 @@ module.exports = {
       exposes: {
         "./App": "./src/components/App",
       },
+      shared: {
+        ...deps,
+        react: {
+          singleton: true,
+          requiredVersion: deps.react,
+        },
+        "react-dom": {
+          singleton: true,
+          requiredVersion: deps["react-dom"],
+        },
+      },
     }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
+    }),
+    new InterpolateHtmlPlugin({
+      PUBLIC_URL: "public", // can modify `static` to another name or get it from `process`
     }),
   ],
 };
