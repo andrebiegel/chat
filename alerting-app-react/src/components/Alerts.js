@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Alert from "./Alert";
 import { Spinner } from "react-bootstrap";
 import { useAlerts } from "../contexts/AlertsProvider";

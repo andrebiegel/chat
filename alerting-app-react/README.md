@@ -76,3 +76,5 @@ Packages installed
 ```shell script
 npm install webpack webpack-cli webpack-server html-webpack-plugin babel-loader webpack-dev-server
 ```
+
+ npm install interpolate-html-plugin

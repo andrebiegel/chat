@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
+import React from "react";
 import { Container, Form, Button, Card, ListGroup } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 import { useAlerts } from "../contexts/AlertsProvider";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-
+import RemoteChat from "CHAT/App";
 function AlertDetail({ user }) {
   const { id } = useParams();
   const { retrieveAlert, addAttendeeToAlert, pushNewAttendee } = useAlerts();
@@ -49,7 +50,9 @@ function AlertDetail({ user }) {
           Back
         </Button>
       </Form>
-      <Container>Alert Chat here</Container>
+      <React.Suspense fallback="Loading Chat">
+        <RemoteChat />
+      </React.Suspense>
     </Container>
   );
 }
