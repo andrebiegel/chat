@@ -2,10 +2,11 @@
   "name": "chat-app-react",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "André Biegel",
+    "email": "andre.biegel@icloud.com"
+  },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.12.0",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
     "babel-loader": "^8.2.2",
     "bootstrap": "^5.0.1",
     "css-loader": "^5.2.6",
