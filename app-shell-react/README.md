@@ -68,3 +68,23 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Using Craco
+
+yarn add @craco/craco
+yarn add webpack
+
+adding craco.config.js
+
+adding .env with
+
+SKIP_PREFLIGHT_CHECK=true
+
+setting scrips as
+
+"scripts": {
+"start": "craco start",
+"build": "craco build",
+"test": "craco test",
+"eject": "react-scripts eject"
+},
