@@ -1,4 +1,7 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "java.configuration.updateBuildConfiguration": "automatic"
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "editor.formatOnSave": true,
+  "prettier.semi": false,
+  "singleQuote": true
 }
