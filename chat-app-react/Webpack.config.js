@@ -1,11 +1,18 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const InterpolateHtmlPlugin = require("interpolate-html-plugin");
-const { ModuleFederationPlugin } = require("webpack").container;
-const deps = require("./package.json").dependencies;
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const InterpolateHtmlPlugin = require("interpolate-html-plugin")
+const { ModuleFederationPlugin } = require("webpack").container
+const deps = require("./package.json").dependencies
 module.exports = {
   mode: "development",
   devServer: {
     port: 8083,
+    headers: {
+      // Enable wide open CORS
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers":
+        "X-Requested-With, content-type, Authorization",
+    },
   },
   module: {
     rules: [
@@ -41,7 +48,7 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "CHAT",
+      name: "ffopsChat",
       filename: "remoteEntry.js",
       exposes: {
         "./App": "./src/components/App",
@@ -49,8 +56,11 @@ module.exports = {
       shared: {
         ...deps,
         react: {
-          singleton: true,
           requiredVersion: deps.react,
+          import: "react", // the "react" package will be used a provided and fallback module
+          shareKey: "react", // under this name the shared module will be placed in the share scope
+          shareScope: "default", // share scope with this name will be used
+          singleton: true, // only a single version of the shared module is allowed
         },
         "react-dom": {
           singleton: true,
@@ -65,4 +75,4 @@ module.exports = {
       PUBLIC_URL: "public", // can modify `static` to another name or get it from `process`
     }),
   ],
-};
+}

@@ -1,11 +1,12 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin")
+const ModuleFederationPlugin =
+  require("webpack").container.ModuleFederationPlugin
 const InterpolateHtmlPlugin = require("interpolate-html-plugin")
 const deps = require("./package.json").dependencies
 module.exports = {
   mode: "development",
   devServer: {
-    port: 8082,
+    port: 8084,
   },
   module: {
     rules: [
@@ -24,33 +25,34 @@ module.exports = {
         // To Use babel Loader
         loader: "babel-loader",
         options: {
-          presets: [
-            "@babel/preset-env" /* to transfer any advansed ES to ES5 */,
-            "@babel/preset-react",
-          ], // to compile react to ES5
+          presets: ["@babel/preset-react"], // to compile react to ES5
         },
       },
     ],
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "ALERTING",
+      name: "shell",
       filename: "remoteEntry.js",
-      remotes: {
-        CHAT: "ffopsChat@http://localhost:8083/remoteEntry.js",
-      },
-      exposes: {
-        "./App": "./src/components/App",
-      },
+      //remotes: {
+      //  chat: "chat@http://localhost:8083/remoteEntry.js",
+      //  alerting: "alerting@http://localhost:8082/remoteEntry.js",
+      //},
       shared: {
         ...deps,
         react: {
+          import: "react",
           singleton: true,
-          requiredVersion: deps.react,
+          shareScope: "default",
+          shareKey: "react",
         },
         "react-dom": {
           singleton: true,
           requiredVersion: deps["react-dom"],
+        },
+        "react-router-dom": {
+          singleton: true,
+          requiredVersion: deps["react-router-dom"],
         },
       },
     }),
@@ -58,7 +60,7 @@ module.exports = {
       template: "./public/index.html",
     }),
     new InterpolateHtmlPlugin({
-      PUBLIC_URL: "static", // can modify `static` to another name or get it from `process`
+      PUBLIC_URL: "public", // can modify `static` to another name or get it from `process`
     }),
   ],
 }

@@ -5,7 +5,7 @@ const loadComponent = (scope, module) => {
   return async () => {
     // Initializes the share scope. This fills it with known provided modules from this build and all remotes
     await __webpack_init_sharing__("default")
-
+    console.log("dsdsdsdsd")
     const container = window[scope] // or get the container somewhere else
     // Initialize the container, it may provide shared modules
     await container.init(__webpack_share_scopes__.default)
@@ -16,12 +16,14 @@ const loadComponent = (scope, module) => {
 }
 
 const System = (props) => {
+  console.log("system " + props.system.module)
   const { ready, failed } = useDynamicScript({
     url: props.system && props.system.url,
   })
 
   if (!props.system) {
-    return <h2>Not system specified</h2>
+    console.log("No system specified")
+    return <h2>No system specified</h2>
   }
 
   if (!ready) {
@@ -34,6 +36,7 @@ const System = (props) => {
 
   const Component = lazy(loadComponent(props.system.scope, props.system.module))
 
+  console.log("rendering system " + props.system.module)
   return (
     <Suspense fallback="Loading System">
       <Component />

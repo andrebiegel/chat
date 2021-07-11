@@ -1,3 +1,7 @@
+# Sources For Module Federation
+
+https://medium.com/@christopherhorobin9/dynamic-module-federation-a6627b3c8eba
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
