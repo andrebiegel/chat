@@ -4,3 +4,5 @@
 !target/lib/*
 !target/quarkus-app/*
 !target/app-cds.jsa
+!src
+!pom.xml
