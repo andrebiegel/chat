@@ -18,3 +18,9 @@ The Chat App is build with a quarkus backend und a React Frontend
 The app has no remotes.
 
 ## operations management component (Alerting)
+
+
+## Faces Issues
+
+* bootstrap needs :: npm install @popperjs/core --save
++ webpack config js needs be lower case, on Mac does it work with  
