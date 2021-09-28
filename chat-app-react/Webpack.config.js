@@ -2,9 +2,17 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const InterpolateHtmlPlugin = require("interpolate-html-plugin")
 const { ModuleFederationPlugin } = require("webpack").container
 const deps = require("./package.json").dependencies
+const path = require('path')
 module.exports = {
   mode: "development",
+  devtool: 'source-map',
+  output: {
+      publicPath: 'auto',
+  },
   devServer: {
+    static: {
+      directory: path.join(__dirname, "dist"),
+    },
     port: 8083,
     headers: {
       // Enable wide open CORS

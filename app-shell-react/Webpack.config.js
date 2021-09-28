@@ -3,10 +3,19 @@ const ModuleFederationPlugin =
   require("webpack").container.ModuleFederationPlugin
 const InterpolateHtmlPlugin = require("interpolate-html-plugin")
 const deps = require("./package.json").dependencies
+const path = require('path')
 module.exports = {
-  mode: "development",
+  entry: './src/index',
+  mode: 'development',
+  devtool: 'source-map',
   devServer: {
-    port: 8084,
+    static: {
+      directory: path.join(__dirname, "dist"),
+    },
+      port: 8084,
+  },
+  output: {
+      publicPath: 'auto',
   },
   module: {
     rules: [
@@ -14,22 +23,16 @@ module.exports = {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
-      {
-        /* The following line to ask babel 
-             to compile any file with extension
-             .js */
-        test: /\.js?$/,
-        /* exclude node_modules directory from babel. 
-            Babel will not compile any files in this directory*/
-        exclude: /node_modules/,
-        // To Use babel Loader
-        loader: "babel-loader",
-        options: {
-          presets: ["@babel/preset-react"], // to compile react to ES5
+        {
+            test: /\.jsx?$/,
+            loader: 'babel-loader',
+            exclude: /node_modules/,
+            options: {
+                presets: ['@babel/preset-react'],
+            },
         },
-      },
     ],
-  },
+},
   plugins: [
     new ModuleFederationPlugin({
       name: "shell",
@@ -63,4 +66,5 @@ module.exports = {
       PUBLIC_URL: "public", // can modify `static` to another name or get it from `process`
     }),
   ],
+
 }

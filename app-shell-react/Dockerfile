@@ -1,7 +1,8 @@
-FROM node:14 as BUILDER 
-COPY . .
+FROM node:alpine as BUILDER
+COPY package.json .
 RUN npm install
+COPY . .
 RUN npm run build
 
-FROM nginx:1.19.10
-COPY --from=BUILDER ./build /usr/share/nginx/html
+FROM nginx:1.21.3-alpine
+COPY --from=BUILDER ./dist /usr/share/nginx/html

@@ -2,10 +2,18 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin")
 const InterpolateHtmlPlugin = require("interpolate-html-plugin")
 const deps = require("./package.json").dependencies
+const path = require('path')
 module.exports = {
   mode: "development",
+  devtool: 'source-map',
+  output: {
+    publicPath: 'auto',
+  },
   devServer: {
     port: 8082,
+    static: {
+      directory: path.join(__dirname, "dist"),
+    },
   },
   module: {
     rules: [
