@@ -3,4 +3,12 @@ services:
   chat-service:
     build: 
       context: ./chat-service
-      dockerfile: Dockerfile.native-multi    
+      dockerfile: Dockerfile.native-multi
+  alerting-service:
+    build: 
+      context: ./alerting-service
+      dockerfile: Dockerfile.native-multi 
+  app-service:
+    build: 
+      context: ./app-service
+      dockerfile: Dockerfile.native-multi     
