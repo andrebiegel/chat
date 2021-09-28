@@ -26,7 +26,7 @@ FROM adoptopenjdk/maven-openjdk11 as BUILD
 COPY src /usr/src/app/src
 COPY ./pom.xml /usr/src/app
 WORKDIR /usr/src/app
-RUN mvn --no-transfer-progress -DskipTests package 
+RUN mvn --no-transfer-progress -DskipTests -Dquarkus.package.create-appcds=true package 
 
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.3 
 
@@ -54,7 +54,7 @@ COPY --from=BUILD --chown=1001 /usr/src/app/target/quarkus-app/lib/ /deployments
 COPY --from=BUILD --chown=1001 /usr/src/app/target/quarkus-app/*.jar /deployments/
 COPY --from=BUILD --chown=1001 /usr/src/app/target/quarkus-app/app/ /deployments/app/
 COPY --from=BUILD --chown=1001 /usr/src/app/target/quarkus-app/quarkus/ /deployments/quarkus/
-COPY --from=BUILD --chown=1001 target/app-cds.jsa /deployments/
+COPY --from=BUILD --chown=1001 /usr/src/app/target/quarkus-app/app-cds.jsa /deployments/
 
 EXPOSE 8080
 USER 1001
