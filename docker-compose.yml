@@ -1,19 +1,19 @@
 version: '3.9'
 services:
 # Client apps 
-  chat-app-react:
+  chat:
     build:
       context: ./chat-app-react
       dockerfile: Dockerfile
     ports:
       - 80:80
-  alerting-app-react:
+  alerting:
     build:
       context: ./alerting-app-react
       dockerfile: Dockerfile
     ports:
       - 81:80 
-  app-shell-react:
+  app-shell:
     build:
       context: ./app-shell-react
       dockerfile: Dockerfile
